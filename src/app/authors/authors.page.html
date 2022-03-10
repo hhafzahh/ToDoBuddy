@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    <ion-title>Famous Authors</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ 
+  <ion-list>
+    <!-- loop through authors, and if user on one item , router link to detail page with parameter.-->
+  <ion-item button *ngFor="let item of results.authors" [routerLink]="['detail', item.name]">
+   
+  <ion-label text-wrap>
+  <h3>{{ item.name }}</h3>
+  </ion-label>
+  <ion-icon slot="end" name="caret-forward-outline"></ion-icon>
+  </ion-item>
+  </ion-list>
+</ion-content>

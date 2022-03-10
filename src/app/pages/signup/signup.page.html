@@ -1,0 +1,122 @@
+<!--sign up  page-->
+<ion-header class = "ion-no-border">
+  <ion-toolbar>
+    
+    <ion-buttons slot = "start">
+      <ion-back-button defaulthref  ="login" text = "">
+        
+      </ion-back-button>
+
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class = "bg-color">
+<ion-card class = "ion-no-margin">
+  <ion-card-header>
+    <ion-card-title>
+      Sign Up
+    </ion-card-title>
+    <ion-card-subtitle>
+      Create your account 
+      <br>by filling up the form
+    </ion-card-subtitle>
+
+  </ion-card-header>
+    
+  <ion-card-content>
+    <!-- here binding the formGroup to form. validationFormUser is the formGroup initialised in the ts file.-->
+    <form [formGroup]="validationFormUser"(ngSubmit)="signUpUser(validationFormUser.value)" >
+    <ion-item>
+      <ion-input name = "fName" type = "text" placeholder="First Name" formControlName="fName">
+        <ion-icon name ="person-outline">
+        </ion-icon>
+      </ion-input>
+    </ion-item>
+    <div>
+    <!--validate fields using for loop-->
+      <ng-container *ngFor = "let validation of validationMessages.fName">
+        <div class = "error_message" *ngIf="validationFormUser.get('fName').hasError(validation.type) && (validationFormUser.get('fName').dirty || validationFormUser.get('fName').touched)">
+            {{validation.message}}
+        </div>
+      </ng-container>
+      </div>
+    
+    <ion-item>
+      <ion-input name = "fLast" type = "text" placeholder="Last Name" formControlName="fLast">
+        <ion-icon name ="person-outline">
+        </ion-icon>
+      </ion-input>
+    </ion-item>
+
+      <div>
+        <ng-container *ngFor = "let validation of validationMessages.fLast">
+          <div class = "error_message" *ngIf="validationFormUser.get('fLast').hasError(validation.type) && (validationFormUser.get('fLast').dirty || validationFormUser.get('fLast').touched)">
+              {{validation.message}}
+          </div>
+        </ng-container>
+        </div>
+      <ion-item>
+      <ion-input name = "mobileNum" type = "text" placeholder="Mobile Number" formControlName="mobileNum">
+        <ion-icon name ="call-outline">
+        </ion-icon>
+      </ion-input>
+    </ion-item>
+    <div>
+      <ng-container *ngFor = "let validation of validationMessages.mobileNum">
+        <div class = "error_message" *ngIf="validationFormUser.get('mobileNum').hasError(validation.type) && (validationFormUser.get('mobileNum').dirty || validationFormUser.get('mobileNum').touched)">
+            {{validation.message}}
+        </div>
+      </ng-container>
+      </div>
+    <ion-item>
+      <ion-input name = "password" type = "password" placeholder="Password"formControlName="password">
+        <ion-icon name ="lock-closed-outline">
+        </ion-icon>
+      </ion-input>
+    </ion-item>
+    <div>
+      <ng-container *ngFor = "let validation of validationMessages.password">
+        <div class = "error_message" *ngIf="validationFormUser.get('password').hasError(validation.type) && (validationFormUser.get('password').dirty || validationFormUser.get('password').touched)">
+            {{validation.message}}
+        </div>
+      </ng-container>
+      </div>
+    <ion-item>
+      <ion-input name = "username" type = "text" placeholder="username"formControlName="username">
+        <ion-icon name ="person-outline">
+        </ion-icon>
+      </ion-input>
+    </ion-item>
+    <div>
+      <ng-container *ngFor = "let validation of validationMessages.username">
+        <div class = "error_message" *ngIf="validationFormUser.get('username').hasError(validation.type) && (validationFormUser.get('username').dirty || validationFormUser.get('username').touched)">
+            {{validation.message}}
+        </div>
+      </ng-container>
+      </div>
+    
+    <ion-item>
+      <ion-input name = "email" type = "email" placeholder="email"formControlName="email">
+        <ion-icon name ="mail-outline">
+        </ion-icon>
+      </ion-input>
+    </ion-item>
+    <div>
+      <ng-container *ngFor = "let validation of validationMessages.email">
+        <div class = "error_message" *ngIf="validationFormUser.get('email').hasError(validation.type) && (validationFormUser.get('email').dirty || validationFormUser.get('email').touched)">
+            {{validation.message}}
+        </div>
+      </ng-container>
+      </div>
+    
+    <div class = "sign-btn-wrap">
+      <!--user can only click this button only when the form is fully validated based on what the ts have been done.-->
+      <!-- direct user to login page once successful-->
+      <ion-button shape = "round" fill = "solid" class = "sign-btn"  [disabled]="!validationFormUser.valid" (click)= "signUpUser()" >Sign Up</ion-button>
+    </div>
+  </form>
+
+  </ion-card-content>
+</ion-card>
+</ion-content>

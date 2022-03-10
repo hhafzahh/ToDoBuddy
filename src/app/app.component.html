@@ -1,0 +1,63 @@
+<ion-app>
+
+<ion-split-pane contentId="main-content">
+  <ion-menu contentId="main-content" type="overlay">
+      <ion-content>
+          <ion-list id="inbox-list">
+              <ion-list-header>{{email}}</ion-list-header>
+              <!-- looping through appPages array-->
+              <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+                  <!-- p.url  will turn the item into a hyperlink , rootDirection can either be root or none -->
+                  <!-- including a click handler that sets selectedIndex = 1. this allows to track current page-->
+                  <!-- [class.selected]="selectedIndex == i" , if it becomes true , then the class will be applied -->
+                  <!-- set detail to false to prevent menu from having a gray forward chevron on its side-->
+                  <!-- dont want visible lines seperate the menu items so hmm set lines to none-->
+                  <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none"
+                            detail="false" [class.selected]="selectedIndex == i" >
+                            <!-- providing two icons -->
+                      <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+                      <!-- pshow page title -->
+                      <ion-label >{{ p.title }}</ion-label>
+                  </ion-item>
+
+                
+
+              </ion-menu-toggle>
+              <ion-item lines = "none" (click)= "userLogout()"><ion-icon name = "log-out-outline" slot = "start"></ion-icon>Log Out</ion-item>
+          </ion-list>
+      </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-split-pane>
+ 
+
+</ion-app>
+
+<!--
+    IONIC CAPACITOR CONFIG IN SUMMARY
+ So this is just the comments for how to do capacitor config to deploy into a mobile
+ 1. ionic build
+ 2. ionic cap add android  ( creates android project)
+ 3. ionic cap copy (copies changes into the projects)
+ 4. ionic cap sync (whatever codes u do , updates into the android project with this command)
+ 5. ionic cap open android
+ 6. if there is prompt saying version unacceptable then like under build gradle u have to sort of change the version
+ 6. add permissions in the android manifest file -- read and write 
+ 7.DONE you're ready to run ur app!
+-->
+<!--
+    Ionic Local Notifications with Capacitor
+    1. make sure u have capacitor install and its working
+    2. create bbuttons in settings.page.html with methods scheduleBasic() / scheduleAdvanced()
+    3. Under ngOnInit() , u need to ask user to allow notifications from this app
+    3. Using LocalNotifications to schedule // has options in the deffinition.ts
+    4. Inside the capactior config json. - define the plugins:{LocalNotifcations and its icon,color and sound}
+    5. registerActionTypes are types of local notfication - has different actions like respond dismiss, chat
+    6. you can add attachments inside the function if u want!
+    7. schedule using at Date.now() + 1000 * 3
+    8. u can bind every hour, repeat? on?  -- // but the every on a certain time gives a problem
+    9.so i did a simple local notification
+    10. inside ngOnInit(), addListerner when it is received adn when it is performed basically if user taps on it
+    11. Done!
+
+-->

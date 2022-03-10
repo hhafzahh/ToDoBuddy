@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    <ion-title>Quotes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  
+  <ion-item button *ngFor="let item of selected.quotes" >
+    <ion-card>
+      
+    <ion-card-header>
+    <ion-card-title>{{item.text}}</ion-card-title>
+    <ion-card-subtitle>tag:{{item.tag}}</ion-card-subtitle>
+       
+    </ion-card-header>
+    <ion-card-content>
+    Name of Author: {{item.author}} 
+    </ion-card-content>
+   </ion-card>
+   </ion-item>
+</ion-content>

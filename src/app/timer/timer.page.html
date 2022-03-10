@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    <ion-title>Timer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- design of the round timer-->
+  <svg id = "progress-circle" width="50vh" height="50vh" viewBox = "0 0 200 200">
+    <linearGradient id = "linearColors1" x1="0" y1 ="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ddd6f3"></stop>
+      <stop offset="100%" stop-color="#faaca8"></stop>
+    </linearGradient>
+    <circle
+    cx="50%"
+    cy="50%"
+    [attr.r]= "circleR"
+    fill="none"
+    stroke="#f3f3f3"
+    stroke-width="12"
+    />
+    <circle
+    cx="50%"
+    cy="50%"
+    [attr.r]= "circleR"
+    fill="none"
+    stroke="url(#linearColors1)"
+    stroke-width="12"
+    stroke-linecap = "round"
+    [attr.stroke-dasharray]="circleDasharray"
+    
+    [attr.stoke-dashoffset]="percentageOffset(percent | async)"
+    />
+
+    <text x="50%" y ="55%" class = "timer-text">{{time |async}}</text>
+    
+
+  </svg>
+  <text x="50%" y ="55%" class = "timer-text">{{time |async}}</text>
+  
+  <form [formGroup]="myForm" (ngSubmit)="enter(myForm)">
+    <ion-item>
+      <ion-input name = "itemSeconds" type = "number" placeholder="Please type your seconds here"formControlName="itemSeconds">
+        <ion-icon name ="timer-outline">
+        </ion-icon>
+      </ion-input>
+      <ion-button class="ion-margin" expand="block" (click)="enter()">enter</ion-button>
+    </ion-item>
+    
+  </form>
+</ion-content>
+
+
+
+<ion-footer>
+  <!-- if state is stop then start Timer(25mins)-->
+  <ion-button *ngIf="state === 'stop'" expand = "block" color="primary" (click)="startTimer(startDuration)">START</ion-button>
+  <!-- if state is start then stopTimer()-->
+  <ion-button *ngIf="state === 'start'" expand = "block" color="danger" (click)="stopTimer()">STOP</ion-button>
+</ion-footer>
