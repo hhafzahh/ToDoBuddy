@@ -1,4 +1,7 @@
 # ToDoBuddy
+Keep forgetting to complete your tasks? 
+
+Tidy your day up with this to-do list application which lets you add in datelines, priority status and let you put in details like time taken of the task!
 Mobile Application using Ionic framework - Angular with firebase &amp; firestore database 
 
 
